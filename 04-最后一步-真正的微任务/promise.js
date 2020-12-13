@@ -138,7 +138,57 @@ class MiniPromise {
     })
     return promise2
   }
+
+  finally(cb){
+    return this.then(res => {
+      return Promise.resolve(cb()).then(() => res) // 需要实现Promise.resolve方法
+      // cb()
+      // return res; // 将结果传给下一个then语句
+    }, err => {
+      return Promise.resolve(cb()).then(() => {
+        throw err;
+      })
+      // cb()
+      // throw err;
+    })
+  }
 }
+
+const isPromise = (p) => {
+  if((typeof p === 'object' && p !== null) || typeof p === 'function'){
+    if(typeof p.then === 'function'){
+      return true;
+    }
+  }
+  return false;
+}
+
+MiniPromise.all = function(items){
+  return new MiniPromise((resolve, reject) => {
+    let result = [];
+    let count = 0;
+    function processData(i, data){
+      result[i] = data;
+      count ++;
+      if(count === items.length){
+        resolve(result)
+      }
+    }
+    for(let i = 0; i < items.length; i ++){
+      let curitem = items[i];
+      if(isPromise(curitem)){
+        curitem.then(res => {
+          processData(i, res)
+        }, reject)
+      } else {
+        processData(i, curitem)
+      }
+    }
+  })
+}
+
+
+
 
 // 测试脚本
 MiniPromise.defer = MiniPromise.deferred = function(){

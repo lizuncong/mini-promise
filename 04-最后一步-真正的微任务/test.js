@@ -31,6 +31,58 @@ p2.then(res => {
 }, err => {
   console.log('p2..失败啦。。。', err)
 })
+
+/********************案例2 promise.all************************************/
+let p3 = new Promise((resolve, reject) => { resolve(1000) })
+Promise.all([1,2,3, p3]).then(res => {
+  console.log('promise.all.success...', res)
+}, err => {
+  console.log('promise.all.error...', err)
+})
+
+
+
+/**********************案例3 promise.finally******************************************************/
+
+let p4 = new Promise((resolve, reject) => {
+  resolve('p4 success')
+})
+
+p4.finally(() => {
+  console.log('p4...最终的')
+}).then(res => {
+  console.log('p4....success', res)
+}, err => {
+  console.log('p4....error...', err)
+}).then((res) => {
+  console.log('then..', res)
+})
+
+
+let p5 = new Promise((resolve, reject) => {
+  resolve('p5 success')
+})
+
+p5.finally(() => {
+  console.log('p5...最终的')
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve()
+    }, 4000)
+  })
+}).then(res => {
+  console.log('p5....success', res)
+}, err => {
+  console.log('p5....error...', err)
+}).then((res) => {
+  console.log('then..', res)
+})
+
+
+
+
+
+
 console.log('===================end==================')
 
 
