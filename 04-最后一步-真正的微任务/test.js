@@ -23,6 +23,7 @@ p.then(res => {
 
 let p2 = new Promise((resolve, reject) => {
   console.log('定义一个promise2...')
+  resolve('p2..success')
   reject('p2..err')
 })
 
@@ -31,6 +32,7 @@ p2.then(res => {
 }, err => {
   console.log('p2..失败啦。。。', err)
 })
+
 
 /********************案例2 promise.all************************************/
 let p3 = new Promise((resolve, reject) => { resolve(1000) })
