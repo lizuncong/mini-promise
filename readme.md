@@ -22,7 +22,7 @@
 - 03-then的实现。then方法返回promise，支持链式调用。目前的Promise还是宏任务
 - 04-最后一步-真正的微任务。使用MutationObserver代替setTimeout以支持微任务。
 - 05-generator。简单介绍了 `迭代器`，`generator`，`async`。怎么用generator和迭代器，promise 组合实现async await。
-- 06-babel-es6-promise。这部分主要是babel core-js模块中es6-promise核心源码的实现。
+- 06-es6-promise。这部分主要是[es6-promise](https://github.com/stefanpenner/es6-promise)核心源码的实现。
 
 
 promise的优点
