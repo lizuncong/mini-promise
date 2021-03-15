@@ -109,6 +109,15 @@ p.then().then().then(res => {
 }, err => {
     console.log('p...err', err)
 })
+// 或者
+var p = new Promise((resolve, reject) => {
+    reject('p..reject')
+});
+p.then('abc', 'efg').then().then(res => {
+    console.log('p...res', res);
+}, err => {
+    console.log('p...err', err)
+})
 ```
 
 3.onFulfilled或者onRejected有异常的情况下
