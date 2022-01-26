@@ -68,12 +68,12 @@ new Promise((resolve) => {
     console.log(2)
     return new Promise(resolve => {
         resolve('2-1')
-    }).then(res => res);
+    }).then(res => res).then(res => res);
 }).then(res => {
     console.log(3, res)
 })
-// [30] res
-// 1 10 2 20
+// [r 40, 3]
+// 1 10 2 20 30
 new Promise((resolve) => {
     console.log(10)
     resolve(4)

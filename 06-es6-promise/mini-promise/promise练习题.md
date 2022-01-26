@@ -491,7 +491,37 @@ new Promise((resolve) => {
     console.log(3)
 })
 ```
-#### 题目1
+
+#### 题目3
+```js
+new Promise((resolve) => {
+    console.log(1)
+    resolve(4)
+}).then(res => {
+    console.log(2)
+    return new Promise(resolve => {
+        resolve('2-1')
+    }).then(res => res).then(res => res);
+}).then(res => {
+    console.log(3, res)
+})
+new Promise((resolve) => {
+    console.log(10)
+    resolve(4)
+}).then(res => {
+    console.log(20)
+    return res;
+}).then(res => {
+    console.log(30)
+}).then(res => {
+    console.log(40)
+}).then(res => {
+    console.log(50)
+}).then(res => {
+    console.log(60)
+})
+```
+#### 题目4
 ```js
 Promise.resolve(Promise.resolve(4)).then((res) => {
     console.log(0);
@@ -515,7 +545,7 @@ Promise.resolve().then(() => {
 })
 ```
 
-#### 题目2
+#### 题目5
 ```js
 Promise.resolve(Promise.resolve(4)).then((res) => {
     console.log(0);
